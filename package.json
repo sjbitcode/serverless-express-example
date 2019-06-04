@@ -1,0 +1,23 @@
+{
+  "name": "serverless-express",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "env-cmd -f ./config/.env nodemon src/index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "env-cmd": "^9.0.2",
+    "express": "^4.17.1",
+    "serverless-http": "^2.0.2"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1",
+    "serverless-dotenv-plugin": "^2.1.1",
+    "serverless-offline": "^5.0.1"
+  }
+}
