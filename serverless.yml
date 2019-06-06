@@ -4,13 +4,21 @@ service: serverless-express
 custom:
   dotenv:
     basePath: ./config/
+  stage: ${env:STAGE}
+  region: ${env:REGION}
+  prod:
+    GATEWAY_URL: { "Fn::Join" : ["", [ "https://", { "Ref" : "ApiGatewayRestApi" }, ".execute-api.${self:custom.region}.amazonaws.com/${self:custom.stage}" ] ]  }
+  dev:
+    GATEWAY_URL: "http://localhost:3000"
 
 
 provider:
   name: aws
   runtime: nodejs8.10
-  stage: ${env:STAGE}
-  region: ${env:REGION}
+  stage: ${self:custom.stage}
+  region: ${self:custom.region}
+  environment:
+    GATEWAY_URL: ${self:custom.${self:custom.stage}.GATEWAY_URL}
 
 
 functions:
